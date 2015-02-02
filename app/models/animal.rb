@@ -1,4 +1,4 @@
 class Animal < ActiveRecord::Base
-  has_many :user_anmimals
-  has_many :employees, through: :user_animals
+  has_many :employee_anmimals
+  has_many :employees, through: :employee_animals
 end
