@@ -14,4 +14,19 @@ RSpec.describe "employees/show", :type => :view do
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Email/)
   end
+
+  it "shows the animals for the selected employee" do
+    @animal = assign(:animal, Animal.create!(
+      name: "Dog",
+      age: "age",
+      breed: "breed",
+      color: "color"
+      ))
+    @employee_animal = assign(:employee_animal, EmployeeAnimal.create!(
+      employee_id: @employee.id,
+      animal_id: @animal.id
+    ))
+    render
+    expect(rendered).to match(/Dog/)
+  end
 end
