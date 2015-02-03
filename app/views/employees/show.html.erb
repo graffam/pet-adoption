@@ -9,6 +9,27 @@
   <strong>Email:</strong>
   <%= @employee.email %>
 </p>
+<!-- ### shows the animals for the current employee ### -->
+<h4>Animals Cared For:</h3>
+<% if @employee.animals %>
+  <ul>
+    <% @employee.animals.each do |animal| %>
+      <li><%= animal.name%> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p> Add Animal? </p>
+<!-- ### Allows animals to be added to employee ### -->
+<%= form_for @employee_animal do |f| %>
+  <div class="field">
+    <%= f.hidden_field :employee_id, value: @employee.id %>
+    <%= f.collection_select :animal_id, Animal.all, :id, :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
 
 <%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', employees_path %>
