@@ -28,7 +28,7 @@ class AnimalsController < ApplicationController
 
     respond_to do |format|
       if @animal.save
-        AnimalMailer.new_animal_created_email(@animal, "test@example.com").deliver_now
+        SendEmailJob.set(wait: 20.seconds).perform_later(@animal)
 
         format.html { redirect_to @animal, notice: 'Animal was successfully created.' }
         format.json { render :show, status: :created, location: @animal }
