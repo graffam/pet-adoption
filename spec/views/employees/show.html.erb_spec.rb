@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "employees/show", :type => :view do
   before(:each) do
+    @employee_animal = EmployeeAnimal.new
     @employee = assign(:employee, Employee.create!(
       :name => "Name",
       :email => "Email"
