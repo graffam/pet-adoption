@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<% cache "animals", expires_in: 5.minutes do %>
 <h1>Listing Animals</h1>
 
 <table>
@@ -31,3 +32,4 @@
 <br>
 
 <%= link_to 'New Animal', new_animal_path %>
+<% end %> 
